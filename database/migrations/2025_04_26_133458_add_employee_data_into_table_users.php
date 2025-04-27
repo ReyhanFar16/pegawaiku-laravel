@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string("phone")->nullable();
-            $table->string("address")->nullable();
-            $table->string("joining_date")->nullable();
-            $table->string("photo")->nullable();
+            $table->string("phone")->nullable(); // Untuk menambahkan column di database
+            $table->string("address")->nullable(); // Untuk menambahkan column di database
+            $table->string("joining_date")->nullable(); // Untuk menambahkan column di database
+            $table->string("photo")->nullable(); // Untuk menambahkan column di database
         });
     }
 
@@ -25,10 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn("phone"); // Untuk menghapus column
-            $table->dropColumn("address"); // Untuk menghapus column
-            $table->dropColumn("joining_date"); // Untuk menghapus column
-            $table->dropColumn("photo"); // Untuk menghapus column
+            $table->dropColumn("phone"); // Untuk menghapus column di database
+            $table->dropColumn("address"); // Untuk menghapus column di database
+            $table->dropColumn("joining_date"); // Untuk menghapus column di database
+            $table->dropColumn("photo"); // Untuk menghapus column di database
         });
     }
 };

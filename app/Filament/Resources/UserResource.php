@@ -46,7 +46,7 @@ class UserResource extends Resource
                 ImageColumn::make('photo')
                     ->label('Photo')
                     ->circular(),
-                TextColumn::make("name")->label("Nama Pegawai")->searchable()->sortable(),
+                TextColumn::make("name")->label("Nama Pegawai")->searchable()->sortable(), // Agar bisa di search dan di sort
                 TextColumn::make("email")->searchable(),
                 TextColumn::make("phone")->label("No Telp/WA")
             ])
