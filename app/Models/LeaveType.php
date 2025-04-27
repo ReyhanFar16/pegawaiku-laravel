@@ -10,4 +10,9 @@ class LeaveType extends Model
         "name",
         "max_days",
     ];
+
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class);
+    }
 }

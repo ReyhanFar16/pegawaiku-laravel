@@ -13,4 +13,9 @@ class Leave extends Model
         "reason",
         "leave_type_id",
     ];
+
+    public function leave_type()
+    {
+        return $this->belongsTo(LeaveType::class);
+    }
 }
