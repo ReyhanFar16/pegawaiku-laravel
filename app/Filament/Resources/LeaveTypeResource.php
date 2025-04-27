@@ -17,7 +17,8 @@ class LeaveTypeResource extends Resource
 {
     protected static ?string $model = LeaveType::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
+    protected static ?string $navigationLabel = 'Jenis Cuti';
     protected static ?string $breadcrumb = 'Jenis Cuti';
 
     public static function form(Form $form): Form
@@ -25,9 +26,14 @@ class LeaveTypeResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nama Jenis Cuti')
+                    ->placeholder('Cuti Tahunan')
+                    ->helperText("Masukkan jenis cuti yang diinginkan")
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('max_days')
+                    ->label('Maksimal Hari')
+                    ->helperText("Masukkan maksimal hari cuti")
                     ->required()
                     ->numeric(),
             ]);
@@ -38,8 +44,10 @@ class LeaveTypeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nama Jenis Cuti')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('max_days')
+                    ->label('Maksimal dalam setahun')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -56,6 +64,7 @@ class LeaveTypeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -80,3 +89,5 @@ class LeaveTypeResource extends Resource
         ];
     }
 }
+
+

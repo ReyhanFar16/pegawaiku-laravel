@@ -9,11 +9,9 @@ use Filament\Resources\Pages\EditRecord;
 class EditLeaveType extends EditRecord
 {
     protected static string $resource = LeaveTypeResource::class;
-
-    protected function getHeaderActions(): array
+    protected static ?string $title = "Ubah Jenis Cuti";
+    protected function getRedirectUrl(): string
     {
-        return [
-            Actions\DeleteAction::make(),
-        ];
+        return $this->getResource()::getUrl('index');
     }
 }

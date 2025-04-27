@@ -9,4 +9,10 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateLeaveType extends CreateRecord
 {
     protected static string $resource = LeaveTypeResource::class;
+    protected static ?string $title = "Buat Jenis Cuti";
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
