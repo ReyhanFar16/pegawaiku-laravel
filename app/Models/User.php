@@ -50,5 +50,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function leave_approvals()
+    {
+        return $this->hasMany(LeaveApproval::class);
+    }
 }
 

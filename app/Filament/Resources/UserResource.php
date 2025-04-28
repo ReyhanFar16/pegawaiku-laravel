@@ -18,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Select;
 
 class UserResource extends Resource
 {
@@ -29,13 +30,27 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make("name")->required(),
-                TextInput::make("email")->email()->required(),
-                TextInput::make("password")->password()->required(),
-                TextInput::make("phone")->tel()->required(),
-                Textarea::make("address")->required(),
-                DatePicker::make("joining_date")->required(),
-                FileUpload::make("photo")->required(),
+                TextInput::make("name")
+                    ->required(),
+                TextInput::make("email")
+                    ->email()
+                    ->required(),
+                TextInput::make("password")
+                    ->password()
+                    ->required(false),
+                TextInput::make("phone")
+                    ->tel()
+                    ->required(),
+                Textarea::make("address")
+                    ->required(),
+                DatePicker::make("joining_date")
+                    ->required(),
+                FileUpload::make("photo")
+                    ->required(),
+                Select::make("roles")
+                    ->relationship("roles", "name")
+                    ->multiple()
+                    ->required(),
             ]);
     }
 
@@ -47,6 +62,8 @@ class UserResource extends Resource
                     ->label('Photo')
                     ->circular(),
                 TextColumn::make("name")->label("Nama Pegawai")->searchable()->sortable(), // Agar bisa di search dan di sort
+                TextColumn::make("roles.name")
+                    ->badge(),
                 TextColumn::make("email")->searchable(),
                 TextColumn::make("phone")->label("No Telp/WA")
             ])
